@@ -23,9 +23,8 @@ run = True
 while run:
 
     a = input()
-    b = []
 
-    if " " in a:
+    if " " in a and ("-" or "+") in a:
         b = [i for i in a.split()]
         print(engine(b))
 
@@ -36,8 +35,16 @@ while run:
     elif a == "/help":
         print("The program adds and subtracts numbers")
 
+    elif "/" in a and (a != "/help" or "/exit"):
+        print("Unknown command")
+
     elif a == "":
         continue
 
     else:
-        print(a)
+        try:
+            int(a)
+        except ValueError:
+            print("Invalid expression")
+        else:
+            print(int(a))
